@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  db:
+    image: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_USER: normaluser
+      MYSQL_PASSWORD: abc123
+      MYSQL_ROOT_PASSWORD: abc123321
+      MYSQL_DATABASE: MW_DATABASE
+    expose:
+      - '3306'
+    volumes:
+        - MW:/var/lib/mysql
+        - ./createTables.sql:/docker-entrypoint-initdb.d/createTables.sql
+volumes:
+  MW:
